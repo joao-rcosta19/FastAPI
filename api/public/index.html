@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envio de email</title>
+</head>
+<body>
+    <h1>Envio de email</h1>
+    <form action="http://10.0.0.118:3000/validar" method="post">
+        <p>
+            <label for="chave">Chave: </label>
+            <input type="text" name="chave" id="chave" placeholder="Digite a chave..." required>
+        </p>
+        <p>
+            <label for="assunto">Assunto: </label>
+            <input type="text" name="assunto" id="assunto" placeholder="Digite a assunto..." required>
+        </p>
+        <p>
+            <label for="corpo">Corpo do Email: </label>
+            <input type="text" name="corpo" id="corpo" placeholder="Digite a corpo do email..." required>
+        </p>
+        <p>
+            <label for="endereco">Endereço de Email: </label>
+            <input type="email" name="endereco" id="endereco" placeholder="Digite o endereco de email..." required>
+        </p>
+        <p>
+            <button type="submit">Enviar</button>
+        </p>
+    </form>
+</body>
+</html>
