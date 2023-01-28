@@ -1,5 +1,5 @@
 import validate_email
-from email_validator import validate_email, EmailNotValidError
+from email_validator import validate_email, EmailNotValidError, ValidatedEmail
 import smtplib #Protocolo de transferência de email simples
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -23,16 +23,24 @@ def validaCampoEmail(campo, obs):
             return True
             break
 
+def validaremailok(email):
+    a = ValidatedEmail(email)
+    return a
+    
+
 def validaEmail(email):
     is_new_account = True
     try:
         validation = validate_email(email, check_deliverability = is_new_account)
         email = validation.email
+        #email = validation.ascii_email
+
     except EmailNotValidError as e:
-        print(str(e))
-        return False #caso seja invalido
-    print(" e-mail validado: ", email)
-    return True #caso seja valido
+        #print(str(e))
+        return False, email #caso seja invalido
+    #print(" e-mail validado: ", email)
+    return True, email #caso seja valido
+    
 
 
 def enviaremail(assunto, texto, endereco):
