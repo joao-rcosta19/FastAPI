@@ -23,9 +23,9 @@ def validaCampoEmail(campo, obs):
             return True
             break
 
-def validaremailok(email):
-    a = ValidatedEmail(email)
-    return a
+#def validaremailok(email):
+#    a = ValidatedEmail(email)
+#    return a
     
 
 def validaEmail(email):
@@ -40,8 +40,6 @@ def validaEmail(email):
         return False, email #caso seja invalido
     #print(" e-mail validado: ", email)
     return True, email #caso seja valido
-    
-
 
 def enviaremail(assunto, texto, endereco):
     # Inciar o Servidor SMTP

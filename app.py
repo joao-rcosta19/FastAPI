@@ -2,7 +2,7 @@ import json
 from fastapi import FastAPI
 from pydantic import BaseModel
 from api.infra.config.database import buscar, atualizaSitEmail, inserindoEmail, buscarsituacao
-from api.infra.repositorios.repositoriosFuncs import validaCampo, validaCampoEmail, validaEmail, enviaremail, validaremailok
+from api.infra.repositorios.repositoriosFuncs import validaCampo, validaCampoEmail, validaEmail, enviaremail
 
 
 class Item(BaseModel):
@@ -17,7 +17,7 @@ app = FastAPI(debug=True)
 
 @app.post("/items/")
 async def create_item(item: Item):
-    validaremailok(item.email)
+    #validaremailok(item.email)
     if buscar(item.chave, "instituicao", "chave_toker") == False:
         return json.dumps({'status': 'Nao Enviado! verifique sua chave!', 'chave inserida': item.chave})
     else:
