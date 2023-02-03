@@ -23,23 +23,19 @@ def validaCampoEmail(campo, obs):
             return True
             break
 
-#def validaremailok(email):
-#    a = ValidatedEmail(email)
-#    return a
-    
-
 def validaEmail(email):
     is_new_account = True
     try:
         validation = validate_email(email, check_deliverability = is_new_account)
         email = validation.email
-        #email = validation.ascii_email
+        email = validation.ascii_email
+        dominio = validation.ascii_domain
 
     except EmailNotValidError as e:
         #print(str(e))
         return False, email #caso seja invalido
     #print(" e-mail validado: ", email)
-    return True, email #caso seja valido
+    return True, email, dominio #caso seja valido
 
 def enviaremail(assunto, texto, endereco):
     # Inciar o Servidor SMTP

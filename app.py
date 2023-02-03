@@ -21,13 +21,16 @@ async def create_item(item: Item):
     if buscar(item.chave, "instituicao", "chave_toker") == False:
         return json.dumps({'status': 'Nao Enviado! verifique sua chave!', 'chave inserida': item.chave})
     else:
-        item.email = item.email.replace(" ","")
+        item.email = item.email.replace(" ","").lower() #tirar os espaço em branco e as letras maiusculas em minusculas
         if validaCampo(item.email) == False:
             return json.dumps({'status': 'Nao Enviado! verifique se o campo endereco de email esta vazio!', 'endereco': item.email})
        
         #validando email
-        vEmail, item.email = validaEmail(item.email) #função retornando boleano e str
-
+        vEmail, item.email, dominio = validaEmail(item.email) #função retornando boleano e str
+        if buscar(dominio,"dominio_email","dominio") == False:
+            inserindoEmail(item.email, "lista_email2", item.chave)
+            return json.dumps({'status': 'Nao Enviado! verifique o dominio do email!', 'endereco': item.email})
+            
         #busca no banco e insere no caso de não existir no banco
         if buscar(item.email, "lista_email2", "email") != True:
             inserindoEmail(item.email, "lista_email2", item.chave)
